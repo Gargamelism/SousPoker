@@ -6,7 +6,16 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sous_poker.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sous_game.settings')
+
+    from django.conf import settings
+
+    if settings.DEBUG:
+        import debugpy
+        if os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):
+            debugpy.listen(("0.0.0.0", 3000))
+            print("Waiting for debugger attach", flush=True)
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

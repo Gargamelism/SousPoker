@@ -1,4 +1,4 @@
-# SousPoker
+# SousGame
 
 ## Setup
 1. Install Docker
@@ -8,7 +8,7 @@
     DATABASE_USER 
     DATABASE_PASS
     ```
-1. Add a `.env` file in `src/sous_poker`
+1. Add a `.env` file in `src/sous_game`
     ```
     DJANGO_SECRET_KEY
     DEBUG

@@ -1,4 +1,4 @@
-"""sous_poker URL Configuration
+"""poker URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from sous_poker.poker_game.views import UserView, GroupView
+from sous_game.sous_auth.views import GroupView, UserView, RegistrationApiView
 
 router = routers.DefaultRouter()
 router.register(r"users", UserView.UserViewSet)
@@ -26,5 +26,5 @@ router.register(r"groups", GroupView.GroupViewSet)
 urlpatterns = [
     path("", include(router.urls)),
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
+    path("api/", include("sous_game.sous_auth.urls", namespace="auth"))
 ]
