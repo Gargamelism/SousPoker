@@ -5,12 +5,12 @@ from rest_framework import authentication, exceptions
 from rest_framework.request import Request
 from typing import Optional
 
-from ..models.CustomUser import CustomUser
+from ..models.SousUser import SousUser
 
 class JwtAuthentication(authentication.BaseAuthentication):
     authentication_header_prefix = "Token"
 
-    def authenticate(self, request: Request) -> Optional[tuple[CustomUser, str]]:
+    def authenticate(self, request: Request) -> Optional[tuple[SousUser, str]]:
         request.user = None
 
         auth_header = authentication.get_authorization_header(request).split()
@@ -30,7 +30,7 @@ class JwtAuthentication(authentication.BaseAuthentication):
         
         return self._authenticate_credentials(request, token)
     
-    def _authenticate_credentials(self, request: Request, token: str) -> Optional[tuple[CustomUser, str]]:
+    def _authenticate_credentials(self, request: Request, token: str) -> Optional[tuple[SousUser, str]]:
         auth_config = apps_conf.get_app_config("sous_auth")
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, [auth_config.jwt_encode_algorithm])
@@ -39,8 +39,8 @@ class JwtAuthentication(authentication.BaseAuthentication):
             raise exceptions.AuthenticationFailed(msg)
         
         try:
-            user = CustomUser.objects.get(pk = payload["id"])
-        except CustomUser.DoesNotExist:
+            user = SousUser.objects.get(pk = payload["id"])
+        except SousUser.DoesNotExist:
             msg = "No user matching this token was found."
             raise exceptions.AuthenticationFailed(msg)
         

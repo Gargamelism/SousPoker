@@ -1,1 +1,1 @@
-from .CustomUser import CustomUser
+from .SousUser import SousUser

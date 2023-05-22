@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "sous_game.poker.apps.PokerGameConfig",
     "sous_game.sous_auth.apps.AuthConfig",
+    "sous_game.profiles.apps.ProfileConfig",
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "sous_auth.CustomUser"
+AUTH_USER_MODEL = "sous_auth.SousUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

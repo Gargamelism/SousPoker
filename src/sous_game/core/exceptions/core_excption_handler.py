@@ -13,7 +13,8 @@ def core_exception_handler(exception: Exception, context: dict) -> Optional[Resp
         "AuthenticationFailed": _handle_generic_error,
         "NotAuthenticated": _handle_generic_error,
         "MethodNotAllowed": _handle_generic_error,
-        }
+        "ProfileDoesNotExist": _handle_generic_error,
+    }
 
     exception_class = exception.__class__.__name__
     if exception_class in handlers:
@@ -22,9 +23,7 @@ def core_exception_handler(exception: Exception, context: dict) -> Optional[Resp
     return response
 
 
-def _handle_generic_error(exception: Exception, context: dict, response: Response) -> Response:
-    return Response(
-        {
-            "errors": response.data
-            }, status = response.status_code
-        )
+def _handle_generic_error(
+    exception: Exception, context: dict, response: Response
+) -> Response:
+    return Response({"errors": response.data}, status=response.status_code)
