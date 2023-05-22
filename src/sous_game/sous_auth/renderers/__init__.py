@@ -1,1 +1,1 @@
-from .UserJSONRenderer import UserJSONRenderer
+from .UserJsonRenderer import UserJsonRenderer

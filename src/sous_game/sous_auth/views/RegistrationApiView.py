@@ -4,13 +4,15 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
-from sous_game.sous_auth.serializers.RegistrationSerializer import RegistrationSerializer
-from sous_game.sous_auth.renderers.UserJSONRenderer import UserJSONRenderer
+from sous_game.sous_auth.serializers.RegistrationSerializer import (
+    RegistrationSerializer,
+)
+from sous_game.sous_auth.renderers import UserJsonRenderer
 
 
 class RegistrationApiView(APIView):
     permission_classes = (AllowAny,)
-    renderer_classes = (UserJSONRenderer,)
+    renderer_classes = (UserJsonRenderer,)
     serializer_class = RegistrationSerializer
 
     def post(self, request: Request):

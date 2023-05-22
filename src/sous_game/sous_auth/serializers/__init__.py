@@ -1,4 +1,4 @@
-from .CustomUserSerializer import CustomUserSerializer
+from .SousUserSerializer import SousUserSerializer
 from .GroupSerializer import GroupSerializer
 from .LoginSerializer import LoginSerializer
 from .RegistrationSerializer import RegistrationSerializer
