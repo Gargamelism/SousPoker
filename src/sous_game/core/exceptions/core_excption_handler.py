@@ -20,6 +20,9 @@ def core_exception_handler(exception: Exception, context: dict) -> Optional[Resp
     if exception_class in handlers:
         return handlers[exception_class](exception, context, response)
 
+    if response is None:
+        return Response({"errors": ["A server error occurred"]}, status=500)
+
     return response
 
 

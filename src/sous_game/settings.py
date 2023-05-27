@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "django_extensions",
+    "sous_game.core.apps.CoreConfig",
     "sous_game.poker.apps.PokerGameConfig",
-    "sous_game.sous_auth.apps.AuthConfig",
-    "sous_game.profiles.apps.ProfileConfig",
+    "sous_game.user.apps.UserConfig",
 ]
 
 MIDDLEWARE = [
@@ -92,7 +92,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "sous_auth.SousUser"
+AUTH_USER_MODEL = "user.SousUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -137,5 +137,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "sous_game.core.exceptions.core_exception_handler",
     "NON_FIELD_ERRORS_KEY": "error",
-    "DEFAULT_AUTHENTICATION_CLASSES": ("sous_game.sous_auth.backends.JwtAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("sous_game.user.backends.JwtAuthentication",),
 }
